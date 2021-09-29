@@ -12,9 +12,9 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    public function foods()
+    public function meals()
     {
-        return $this->hasMany(Food::class);
+        return $this->hasMany(Meal::class);
     }
 
     /**
