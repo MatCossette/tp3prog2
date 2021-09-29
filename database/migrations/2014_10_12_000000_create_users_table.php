@@ -18,9 +18,18 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('address');
+            $table->string('city');
+            $table->unsignedBigInteger('food_id');
             $table->string('password');
             $table->rememberToken();
-            $table->timestamps();
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');
+
+            $table->foreign('food_id')
+                ->references('id')
+                ->on('foods')
+                ->onDelete(null);
         });
     }
 
