@@ -13,6 +13,7 @@ class CreateMealsTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('meals', function (Blueprint $table) {
             $table->id();
             $table->string('description');
@@ -27,6 +28,7 @@ class CreateMealsTable extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
+        Schema::enableForeignKeyConstraints();
         });
     }
 
