@@ -30,7 +30,7 @@ class UserFactory extends Factory
             'address' => $this->faker->streetAddress(),
             'city' => $this->faker->city(),
             'food_id' => null,
-            'password' => '123456', // password
+            'password' => bcrypt('123456'), // password
             'remember_token' => Str::random(10),
         ];
     }
