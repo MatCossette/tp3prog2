@@ -25,11 +25,11 @@ class UserFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'email' => 'user'.self::$order.'@user'.self::$order.'.ca',
+            'email' => 'user' . self::$order . '@user' . self::$order++ . '.ca',
             'email_verified_at' => now(),
             'address' => $this->faker->streetAddress(),
             'city' => $this->faker->city(),
-            'food_id' => self::$order++,
+            'food_id' => null,
             'password' => '123456', // password
             'remember_token' => Str::random(10),
         ];
