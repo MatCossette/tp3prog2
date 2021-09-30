@@ -33,6 +33,7 @@ class CreateUsersTable extends Migration
                 ->onDelete(null);
         Schema::enableForeignKeyConstraints();
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**

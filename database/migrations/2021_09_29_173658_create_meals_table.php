@@ -30,6 +30,7 @@ class CreateMealsTable extends Migration
                 ->onDelete('cascade');
         Schema::enableForeignKeyConstraints();
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**

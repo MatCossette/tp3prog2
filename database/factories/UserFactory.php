@@ -25,7 +25,7 @@ class UserFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'email' => 'user'.self::$order.'@user'.self::$order++.'.ca',
+            'email' => 'user' . self::$order . '@user' . self::$order++ . '.ca',
             'email_verified_at' => now(),
             'address' => $this->faker->streetAddress(),
             'city' => $this->faker->city(),
