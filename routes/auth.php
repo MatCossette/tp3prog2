@@ -64,6 +64,18 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->middleware('auth')
                 ->name('logout');
 
-Route::get('/profile', [UserProfileController::class, 'index'])
+Route::get('/profile', [RegisteredUserController::class, 'index'])
                 ->middleware('auth')
                 ->name('profile');
+
+Route::get('/edit/{id}', [RegisteredUserController::class, 'edit'])
+                ->middleware('auth')
+                ->name('edit');
+
+Route::post('/edit/{id}', [RegisteredUserController::class, 'update'])
+                ->middleware('auth')
+                ->name('update');
+
+Route::delete('/delete/{id}', [RegisteredUserController::class, 'destroy'])
+                ->middleware('auth')
+                ->name('delete');
