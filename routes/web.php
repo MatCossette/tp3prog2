@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 
-Route::get("/weather", [WeatherController::class, "getWeather"]);
+Route::get("weather", [WeatherController::class, 'getWeather']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

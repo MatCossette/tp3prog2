@@ -1,11 +1,15 @@
-<table>
+<div>
+    hello
+</div>
+
+<!-- <table>
     <thead>
         <th>#weather</th>
         <th>#temp</th>
         <th>#icon</th>
     </thead>
     <tbody>
-        @foreach($weatherNow as $weatherNow)
+        @foreach($weatherNow as $weatherNows)
         <tr>
             <td>{{ $weatherNow->weather }}</td>
             <td>{{ $weatherNow->temp }}</td>
@@ -14,7 +18,7 @@
         </tr>
         @endforeach
     </tbody>
-</table>
+</table> -->
 
 <!-- Issues with: weatheNow as weatherNow
 Comment aller aller chercher les infos nested dans les objects? (Json.parse?) -->
