@@ -14,24 +14,16 @@ use Symfony\Component\HttpKernel\Profiler\Profile;
 
 class RegisteredUserController extends Controller
 {
-    /**
-     * Display the registration view.
-     *
-     * @return \Illuminate\View\View
-     */
+    public function index()
+    {
+        return view('auth.profile');
+    }
+
     public function create()
     {
         return view('auth.register');
     }
 
-    /**
-     * Handle an incoming registration request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -54,4 +46,31 @@ class RegisteredUserController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
     }
+
+    public function edit($id)
+    {
+        return view('auth.edit-profile');
+    }
+
+    public function update(Request $request, $id)
+    {
+        $user = User::find($id);
+
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->address = $request->input('address');
+        $user->city = $request->input('city');
+        //$user->password = Hash::make($request->input('password'));
+
+        $user->save();
+
+        return redirect('/dashboard');
+    }
+
+    public function destroy($id)
+    {
+        User::destroy($id);
+        return redirect('/');
+    }
+
 }
