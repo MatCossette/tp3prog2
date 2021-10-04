@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\MealController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WeatherController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +16,7 @@ use App\Http\Controllers\WeatherController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/', [MealController::class, 'index']);
 
 Route::get("/weather", [WeatherController::class, "getWeather"]);
 
