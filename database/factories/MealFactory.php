@@ -4,29 +4,27 @@ namespace Database\Factories;
 
 use App\Models\Meal;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Http;
+use Database\Factories\UserFactory;
 
 class MealFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
     protected $model = Meal::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
     public function definition()
     {
+        $city = 'montreal';
+        $apiKey = 'e16e6f397ecd165a6d4c823042160975';
+        $res = Http::get("api.openweathermap.org/data/2.5/weather?q={$city}&units=metric&appid={$apiKey}");
+
+        $temp = $res->json()['main']['temp'];
+
         return [
-            'description' => 'test',
+            'description' => $this->faker->realText($maxNbChars = 50),
             'image' => 'test',
-            'meteo' => '1234',
-            'user_id' => '1',
-            'is_reserved' => '0',
+            'meteo' => $temp,
+            'user_id' => $this->faker->numberBetween($min = 1, $max = 5),
+            'is_reserved' => $this->faker->numberBetween($min = 0, $max = 1),
         ];
     }
 }

@@ -12,4 +12,11 @@ class Meal extends Model
         return $this->belongsTo(User::class);
     }
     use HasFactory;
+
+    protected $fillable = [
+        'image',
+        'description',
+        'user_id',
+        'meteo',
+    ];
 }
