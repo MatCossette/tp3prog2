@@ -16,12 +16,14 @@ use App\Http\Controllers\WeatherController;
 |
 */
 
-Route::get('/', [MealController::class, 'index']);
+Route::get('/', [MealController::class, 'index'])->name('/');
 
-Route::get("/weather", [WeatherController::class, "getWeather"]);
+Route::get('/createMeal', [MealController::class, 'create'])->middleware(['auth'])->name('createMeal');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::post('/createMeal', [MealController::class, 'store'])->middleware(['auth'])->name('createMeal');
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
 
 require __DIR__ . '/auth.php';
