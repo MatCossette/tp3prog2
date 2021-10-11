@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Http;
 use App\Models\Meal;
 use App\Models\User;
 
+
 class MealController extends Controller
 {
     public function index()
@@ -28,12 +29,14 @@ class MealController extends Controller
 
         $temp = $res->json()['main']['temp'];
 
+
+
+
         $meal = Meal::create([
-            'image' => $request->image,
+            'image' => basename($request->image->store('images', 'public')),
             'description' => $request->description,
             'user_id' => $request->user_id,
             'meteo' => $temp,
         ]);
-
     }
 }
