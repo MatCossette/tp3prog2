@@ -28,6 +28,7 @@
                 <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
                     @foreach ($meals as $meal)
                     <div class="bg-white w-128 h-60 rounded shadow-md flex card text-grey-darkest">
+
                         @if ($meal->image)
                         <img class="w-1/2 h-full rounded-l-sm" src="/storage/images/{{ $meal-> image }}" alt="photo de repas">
                         @else
@@ -38,15 +39,13 @@
                                 <h2 class="font-bold mb-1 text-grey-darkest">
                                     {{ $meal-> description }}
                                 </h2>
-                                <div class="text-xs flex items-center mb-4 text-grey-light">
-                                    Disponible depuis le <br> {{ $meal-> created_at }}
-                                </div>
                                 <div>
-                                    <p>
-
+                                    <p class="text-gray-300">
                                         Offert par {{ $meal-> user_id }}
-
                                     </p>
+                                </div>
+                                <div class="text-xs flex items-center mb-4 text-gray-400">
+                                    Disponible depuis le <br> {{ $meal-> created_at }}
                                 </div>
                                 <div class="flex items-center mt-4">
                                     <div class="text-xs">
