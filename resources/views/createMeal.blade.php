@@ -5,13 +5,13 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-                    <form action="{{ route('createMeal') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('createMeal') }}" method="post" enctype="multipart/form-data">
                         @csrf
 
                         <div>
                             <x-label for="image" :value="__('Image')" />
 
-                            <x-input id="image" class="block mt-1 w-full" type="file" name="image" value="" accept="image/png, image/jpg, image/jpeg" placeholder="Choisir une image" required autofocus />
+                            <x-input id="image" class="block mt-1 w-full" type="file" name="image" value="placeholdermeal.svg" accept="image/*" placeholder="Choisir une image" />
                         </div>
 
                         <div class="mt-4">

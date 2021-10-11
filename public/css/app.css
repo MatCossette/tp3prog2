@@ -10362,10 +10362,6 @@ select {
   grid-auto-rows: minmax(0, 1fr);
 }
 
-.auto-rows-2fr {
-  grid-auto-rows: minmax(2fr, 3frfr);
-}
-
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
@@ -41665,10 +41661,6 @@ select {
     grid-auto-rows: minmax(0, 1fr);
   }
 
-  .sm\:auto-rows-2fr {
-    grid-auto-rows: minmax(2fr, 3frfr);
-  }
-
   .sm\:grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
@@ -72954,10 +72946,6 @@ select {
 
   .md\:auto-rows-fr {
     grid-auto-rows: minmax(0, 1fr);
-  }
-
-  .md\:auto-rows-2fr {
-    grid-auto-rows: minmax(2fr, 3frfr);
   }
 
   .md\:grid-cols-1 {
@@ -104247,10 +104235,6 @@ select {
     grid-auto-rows: minmax(0, 1fr);
   }
 
-  .lg\:auto-rows-2fr {
-    grid-auto-rows: minmax(2fr, 3frfr);
-  }
-
   .lg\:grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
@@ -135538,10 +135522,6 @@ select {
     grid-auto-rows: minmax(0, 1fr);
   }
 
-  .xl\:auto-rows-2fr {
-    grid-auto-rows: minmax(2fr, 3frfr);
-  }
-
   .xl\:grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
@@ -166827,10 +166807,6 @@ select {
 
   .\32xl\:auto-rows-fr {
     grid-auto-rows: minmax(0, 1fr);
-  }
-
-  .\32xl\:auto-rows-2fr {
-    grid-auto-rows: minmax(2fr, 3frfr);
   }
 
   .\32xl\:grid-cols-1 {

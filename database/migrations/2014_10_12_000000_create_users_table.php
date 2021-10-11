@@ -31,7 +31,6 @@ class CreateUsersTable extends Migration
                 ->references('id')
                 ->on('meals')
                 ->onDelete(null);
-        Schema::enableForeignKeyConstraints();
         });
         Schema::enableForeignKeyConstraints();
     }

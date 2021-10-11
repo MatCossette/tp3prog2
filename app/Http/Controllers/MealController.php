@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Models\Meal;
 use App\Models\User;
+use Intervention\Image\Facades\Image as InterventionImage;
+use Intervention\Image\ImageManager;
+use Illuminate\Support\Facades\Storage;
+
 
 
 class MealController extends Controller
@@ -29,11 +33,14 @@ class MealController extends Controller
 
         $temp = $res->json()['main']['temp'];
 
-
+        $imagePath = basename($request->image->store('images', 'public'));
+        $image = InterventionImage::make($request->image)->widen(500)
+            ->encode();
+        Storage::put('public/thumbs/' . $imagePath, $image);
 
 
         $meal = Meal::create([
-            'image' => basename($request->image->store('images', 'public')),
+            'image' => $imagePath,
             'description' => $request->description,
             'user_id' => $request->user_id,
             'meteo' => $temp,

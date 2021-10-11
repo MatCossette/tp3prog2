@@ -12,7 +12,8 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    {   
+    {
+
         \App\Models\User::factory(5)->create();
         \App\Models\Meal::factory(10)->create();
     }

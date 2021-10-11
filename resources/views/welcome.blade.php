@@ -28,7 +28,11 @@
                 <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
                     @foreach ($meals as $meal)
                     <div class="bg-white w-128 h-60 rounded shadow-md flex card text-grey-darkest">
+                        @if ($meal->image)
                         <img class="w-1/2 h-full rounded-l-sm" src="/storage/images/{{ $meal-> image }}" alt="photo de repas">
+                        @else
+                        <img class="w-1/2 h-full rounded-l-sm" src="/storage/images/placeholdermeal.svg" alt="image repas par default">
+                        @endif
                         <div class="w-full flex flex-col">
                             <div class="p-4 pb-0 flex-1">
                                 <h3 class="font-light mb-1 text-grey-darkest">
