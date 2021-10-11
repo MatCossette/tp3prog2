@@ -21,7 +21,7 @@ class MealFactory extends Factory
 
         return [
             'description' => $this->faker->realText($maxNbChars = 50),
-            'image' => 'test',
+            'image' => 'placeholdermeal.svg',
             'meteo' => $temp,
             'user_id' => $this->faker->numberBetween($min = 1, $max = 5),
             'is_reserved' => $this->faker->numberBetween($min = 0, $max = 1),
