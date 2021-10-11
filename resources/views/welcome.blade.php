@@ -35,15 +35,17 @@
                         @endif
                         <div class="w-full flex flex-col">
                             <div class="p-4 pb-0 flex-1">
-                                <h3 class="font-light mb-1 text-grey-darkest">
-                                    Offert par {{ $meal-> user_id }}
-                                </h3>
-                                <div class="text-xs flex items-center mb-4">
+                                <h2 class="font-bold mb-1 text-grey-darkest">
+                                    {{ $meal-> description }}
+                                </h2>
+                                <div class="text-xs flex items-center mb-4 text-grey-light">
                                     Disponible depuis le <br> {{ $meal-> created_at }}
                                 </div>
                                 <div>
                                     <p>
-                                        {{ $meal-> description }}
+
+                                        Offert par {{ $meal-> user_id }}
+
                                     </p>
                                 </div>
                                 <div class="flex items-center mt-4">
