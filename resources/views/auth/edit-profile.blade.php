@@ -38,7 +38,7 @@
                     </div>
         
                     <!-- Password -->
-                    {{-- <div class="mt-4">
+                    <div class="mt-4">
                         <x-label for="password" :value="__('New Password')" />
         
                         <x-input id="password" class="block mt-1 w-full"
@@ -55,8 +55,8 @@
                                         type="password"
                                         name="password_confirmation"/>
 
-                    </div> --}}
-        
+                    </div>
+    
                     <div class="flex items-center justify-end mt-4">        
                         <x-button class="ml-4">
                             {{ __('Enregistrer') }}

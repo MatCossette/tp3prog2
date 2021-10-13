@@ -5,7 +5,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-                    <form action="{{ route('createMeal') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('createMeal', [Auth::user()->id]) }}" method="post" enctype="multipart/form-data">
                         @csrf
 
                         <div>
@@ -19,6 +19,13 @@
 
                             <x-input id="description" class="block mt-1 w-full" type="text" name="description" value="" required />
                         </div>
+
+                        <div class="mt-4">
+                            <x-label for="time" :value="__('Date du dépôt')" />
+
+                            <x-input id="time" class="block mt-1 w-full" type="datetime-local" name="time" value=""/>
+                        </div>
+
 
                         <div class="flex items-center justify-end mt-4">
                             <x-button class="ml-4">

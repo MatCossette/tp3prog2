@@ -64,7 +64,7 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->middleware('auth')
                 ->name('logout');
 
-Route::get('/profile', [RegisteredUserController::class, 'index'])
+Route::get('/profile/{id}', [RegisteredUserController::class, 'index'])
                 ->middleware('auth')
                 ->name('profile');
 

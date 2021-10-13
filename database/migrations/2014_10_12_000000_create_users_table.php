@@ -29,7 +29,8 @@ class CreateUsersTable extends Migration
             
             $table->foreign('food_id')
                 ->references('id')
-                ->on('meals');
+                ->on('meals')
+                ->onDelete('set null');
         });
         Schema::enableForeignKeyConstraints();
     }
