@@ -17,7 +17,7 @@
                     <x-nav-link :href="route('createMeal')" :active="request()->routeIs('createMeal')">
                         {{ __('Ajouter un repas') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('profile')" :active="request()->routeIs('profile')">
+                    <x-nav-link :href="route('profile', ['id' => Auth::user()->id])" :active="request()->routeIs('profile', ['id' => Auth::user()->id])">
                         {{ __('Mon profil') }}
                     </x-nav-link>
                     @endauth  

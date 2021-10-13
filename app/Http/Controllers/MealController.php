@@ -16,8 +16,9 @@ class MealController extends Controller
 {
     public function index()
     {
-        $meals = Meal::orderBy('created_at', 'desc')->paginate(9);
-        return view('welcome', compact('meals'));
+        $meals = Meal::where('is_reserved', '=', '0')->latest()->paginate(9);
+        $usersOffering = User::all('id', 'name', 'address', 'city');
+        return view('welcome', compact('meals', 'usersOffering'));
     }
 
     public function create()
@@ -27,7 +28,6 @@ class MealController extends Controller
 
     public function store(Request $request)
     {
-        
         if(empty($request->image)){
             $imagePath = "placeholdermeal.svg";
         }else{
@@ -42,6 +42,11 @@ class MealController extends Controller
         $res = Http::get("api.openweathermap.org/data/2.5/weather?q={$city}&units=metric&appid={$apiKey}");
 
         $temp = $res->json()['main']['temp'];
+        if(empty($request->time)){
+            $time = now();
+        }else{
+            $time = $request->time;
+        }
 
 
 
@@ -50,6 +55,38 @@ class MealController extends Controller
             'description' => $request->description,
             'user_id' => $request->user_id,
             'meteo' => $temp,
+            'created_at' => $time,
         ]);
+
+        event(new $meal);
+
+        return redirect('/');
+    }
+
+    public function reserve($foodCard, $id)
+    {
+        $customer = User::find($id);
+        if($customer->food_id == null){
+            $customer->food_id = $foodCard;
+            $customer->save();
+            $reservedMeal = Meal::find($foodCard);
+            $reservedMeal->is_reserved = true;
+            $reservedMeal->save();
+            return redirect('/');
+        } else {
+            return redirect('/');
+        }
+    }
+
+    public function destroy($id)
+    {
+        Meal::destroy($id);
+        return redirect('/');
+    }
+
+    public function erase($id)
+    {
+        Meal::destroy($id);
+        return redirect('/');
     }
 }

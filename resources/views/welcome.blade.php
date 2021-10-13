@@ -40,29 +40,43 @@
                                     {{ $meal-> description }}
                                 </h2>
                                 <div>
-                                    <p class="text-gray-300">
-                                        Offert par {{ $meal-> user_id }}
-                                    </p>
+                                    @foreach($usersOffering as $userOffering)
+                                    @if ($userOffering->id == $meal->user_id)
+                                    <p class="text-gray-300"> Ajouté par {{ $userOffering->name }}</p>
+                                    <div class="text-xs flex items-center mb-2 text-gray-400">
+                                        le {{ $meal-> created_at }}
+                                    </div>
+                                        @if (Route::has('login'))
+                                        <div class="sm:block">
+                                            @auth
+                                            <p class="text-xs">{{ $userOffering->address }}, {{ $userOffering->city }}</p>
+                                            @else
+                                            @endauth
+                                        </div>
+                                        @endif
+                                    @endif
+                                    @endforeach
                                 </div>
-                                <div class="text-xs flex items-center mb-4 text-gray-400">
-                                    Disponible depuis le <br> {{ $meal-> created_at }}
-                                </div>
-                                <div class="flex items-center mt-4">
+                                <div class="flex items-center mt-2">
                                     <div class="text-xs">
-                                        Température: {{ $meal-> meteo }}
+                                        {{ $meal-> meteo }}°C
                                     </div>
                                 </div>
-                            </div>
-                            <div class="bg-grey-lighter p-3 flex items-center justify-between transition hover:bg-grey-light">
-                                @if (Route::has('login'))
-                                <div class="py-4 sm:block">
-                                    @auth
-                                    <a href="{{ url('/profile') }}" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">Réserver</a>
-                                    @else
-                                    <a href="{{ url('/login') }}" class="bg-gray-500 hover:bg-gray-700 text-white py-2 px-4 rounded">Réserver</a>
-                                    @endauth
+                                <div class="bg-grey-lighter p-3 flex items-center justify-between transition hover:bg-grey-light">
+                                    @if (Route::has('login'))
+                                    <div class="py-4 sm:block">
+                                        @auth
+                                        <form action="{{ route('reserveMeal', ['foodCard' => $meal-> id, 'id' => Auth::user()->id]) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">Réserver</button>
+                                        </form>
+                                        @else
+                                        <a href="{{ url('/login') }}" class="bg-gray-500 hover:bg-gray-700 text-white py-2 px-4 rounded">Réserver</a>
+                                        @endauth
+                                    </div>
+                                    @endif
                                 </div>
-                                @endif
+                                
                             </div>
                         </div>
                     </div>

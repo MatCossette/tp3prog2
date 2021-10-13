@@ -19,12 +19,25 @@ use App\Http\Controllers\WeatherController;
 
 Route::get('/', [MealController::class, 'index'])->name('/');
 
-Route::get('/createMeal', [MealController::class, 'create'])->middleware(['auth'])->name('createMeal');
+Route::get('/createMeal', [MealController::class, 'create'])
+                ->middleware(['auth'])
+                ->name('createMeal');
 
-Route::post('/createMeal', [MealController::class, 'store'])->middleware(['auth'])->name('createMeal');
+Route::post('/reserve/{foodCard}/{id}', [MealController::class, 'reserve'])
+                ->middleware(['auth'])
+                ->name('reserveMeal');
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
+
+Route::post('/createMeal', [MealController::class, 'store'])         
+                ->middleware(['auth'])
+                ->name('createMeal');
+
+Route::delete('/deleteMeal/{id}', [MealController::class, 'destroy'])
+                ->name('deleteMeal');
+
+Route::post('/erase/{id}', [MealController::class, 'erase'])
+                ->middleware(['auth'])
+                ->name('eraseMeal');
+
 
 require __DIR__ . '/auth.php';

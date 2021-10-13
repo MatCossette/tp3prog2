@@ -14,11 +14,11 @@
                 <p>Addresse: {{ Auth::user()->address }}</p>
                 <p>Ville: {{ Auth::user()->city }}</p>
                 <form action="{{ route('edit', [Auth::user()->id]) }}" method="GET">
-                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-3 rounded">
                         Modifier mes informations
                     </button>
                 </form>
-                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" id="deleteProfileButton">
+                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 mt-3 rounded" id="deleteProfileButton">
                     Supprimer mon compte
                 </button>
                 <form action="{{ route('delete', [Auth::user()->id]) }}" method="POST" class="hidden" id="confirmModal">
@@ -62,7 +62,76 @@
                     </div>                
                 </form>
 
+                  <h2 class="font-bold mb-5 text-grey-darkest mt-6">
+                    Vous offrez présentement:
+                  </h2>
+              <div class="relative flex items-top justify-center sm:items-center py-4 sm:pt-0 ">
+                  <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+                      @foreach ($offeredMeals as $meal)
+                      <div class="bg-white w-128 h-60 rounded shadow-md flex card text-grey-darkest">  
+                          @if ($meal->image)
+                          <img class="w-1/2 h-full rounded-l-sm" src="/storage/images/{{ $meal-> image }}" alt="photo de repas">
+                          @else
+                          <img class="w-1/2 h-full rounded-l-sm" src="/storage/images/placeholdermeal.svg" alt="image repas par default">
+                          @endif
+                          <div class="w-full flex flex-col">
+                              <div class="p-4 pb-0 flex-1">
+                                  <h2 class="font-bold mb-1 text-grey-darkest">
+                                      {{ $meal-> description }}
+                                  </h2>
+                                  <div class="text-xs flex items-center mb-4 text-gray-400">
+                                      Depuis le <br> {{ $meal-> created_at }}
+                                  </div>
+                              </div>
+                              <div class="bg-grey-lighter p-3 flex items-center justify-between transition hover:bg-grey-light">
+                                <form action="{{ route('deleteMeal', $meal->id) }}" method="POST">
+                                  {{ csrf_field() }}
+                                  {{ method_field('DELETE') }}              
+                                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 mt-3 rounded">
+                                        X
+                                    </button>
+                                </form>
+                              </div>
+                          </div>
+                      </div>
+                      @endforeach
+                  </div>
               </div>
+              <h2 class="font-bold mb-5 text-grey-darkest mt-6">
+                Vous avez réservé:
+              </h2>
+              <div class="relative flex items-top justify-center sm:items-center py-4 sm:pt-0 ">
+                <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+                    @foreach ($reservedMeal as $meal)
+                    <div class="bg-white w-128 h-60 rounded shadow-md flex card text-grey-darkest">  
+                        @if ($meal->image)
+                        <img class="w-1/2 h-full rounded-l-sm" src="/storage/images/{{ $meal-> image }}" alt="photo de repas">
+                        @else
+                        <img class="w-1/2 h-full rounded-l-sm" src="/storage/images/placeholdermeal.svg" alt="image repas par default">
+                        @endif
+                        <div class="w-full flex flex-col">
+                            <div class="p-4 pb-0 flex-1">
+                                <h2 class="font-bold mb-1 text-grey-darkest">
+                                    {{ $meal-> description }}
+                                </h2>
+                                <div class="text-xs flex items-center mb-4 text-gray-400">
+                                    Depuis le <br> {{ $meal-> created_at }}
+                                </div>
+                            </div>
+                            <div class="bg-grey-lighter p-3 flex items-center justify-between transition hover:bg-grey-light">
+                              <form action="{{ route('eraseMeal', $meal->id) }}" method="POST">
+                                @csrf
+                                  <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-3 rounded">
+                                      Ramassé!
+                                  </button>
+                              </form>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+
           </div>
       </div>
   </div>

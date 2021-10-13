@@ -18,5 +18,6 @@ class Meal extends Model
         'description',
         'user_id',
         'meteo',
+        'created_at'
     ];
 }
