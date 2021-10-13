@@ -27,16 +27,22 @@ class MealController extends Controller
 
     public function store(Request $request)
     {
+        
+        if(empty($request->image)){
+            $imagePath = "placeholdermeal.svg";
+        }else{
+            $imagePath = basename($request->image->store('images', 'public'));
+            $image = InterventionImage::make($request->image)->widen(500)
+            ->encode();
+        Storage::put('public/thumbs/' . $imagePath, $image);
+        }
+
         $city = $request->city;
         $apiKey = 'e16e6f397ecd165a6d4c823042160975';
         $res = Http::get("api.openweathermap.org/data/2.5/weather?q={$city}&units=metric&appid={$apiKey}");
 
         $temp = $res->json()['main']['temp'];
 
-        $imagePath = basename($request->image->store('images', 'public'));
-        $image = InterventionImage::make($request->image)->widen(500)
-            ->encode();
-        Storage::put('public/thumbs/' . $imagePath, $image);
 
 
         $meal = Meal::create([

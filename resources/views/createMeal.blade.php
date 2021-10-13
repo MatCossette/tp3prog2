@@ -11,7 +11,7 @@
                         <div>
                             <x-label for="image" :value="__('Image')" />
 
-                            <x-input id="image" class="block mt-1 w-full" type="file" name="image" value="placeholdermeal.svg" accept="image/*" placeholder="Choisir une image" />
+                            <x-input id="image" class="block mt-1 w-full" type="file" name="image" accept="image/*" placeholder="Choisir une image" />
                         </div>
 
                         <div class="mt-4">
