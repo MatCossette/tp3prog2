@@ -16,13 +16,12 @@ class UserFactory extends Factory
     
     public function definition()
     {
-        $villes = ['quebec', 'montreal'];
         return [
             'name' => $this->faker->name(),
             'email' => 'user' . self::$order . '@user' . self::$order++ . '.ca',
             'email_verified_at' => now(),
             'address' => $this->faker->streetAddress(),
-            'city' => $this->$villes->random(),
+            'city' => 'quebec',
             'food_id' => $this->faker->numberBetween($min = 1, $max = 10),
             'password' => bcrypt('123456'),
             'remember_token' => Str::random(10),
