@@ -21,16 +21,15 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('address');
             $table->string('city');
-            $table->unsignedBigInteger('food_id')->nullable();
+            $table->unsignedBigInteger('food_id');
             $table->string('password');
             $table->rememberToken();
             $table->timestamp('created_at');
             $table->timestamp('updated_at');
-
+            
             $table->foreign('food_id')
                 ->references('id')
-                ->on('meals')
-                ->onDelete(null);
+                ->on('meals');
         });
         Schema::enableForeignKeyConstraints();
     }
