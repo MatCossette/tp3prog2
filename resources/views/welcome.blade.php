@@ -32,9 +32,9 @@
                     <div class="bg-white w-128 h-60 rounded shadow-md flex card text-grey-darkest">
 
                         @if ($meal->image)
-                        <img class="w-1/2 h-full rounded-l-sm" src="/storage/{{ $meal-> image }}" alt="photo de repas">
+                        <img class="w-1/2 h-full rounded-l-sm" src="/storage/thumbs/{{ $meal-> image }}" alt="photo de repas">
                         @else
-                        <img class="w-1/2 h-full rounded-l-sm" src="/storage/placeholdermeal.svg" alt="image repas par default">
+                        <img class="w-1/2 h-full rounded-l-sm" src="/storage/images/placeholdermeal.svg" alt="image repas par default">
                         @endif
                         <div class="w-full flex flex-col">
                             <div class="p-4 pb-0 flex-1">
