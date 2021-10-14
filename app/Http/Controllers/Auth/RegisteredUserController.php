@@ -52,7 +52,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect('/');
+        return redirect('/')->with('status', 'Votre compte a été créé. Vous êtes connecté.');
     }
 
     public function edit()
@@ -81,7 +81,7 @@ class RegisteredUserController extends Controller
 
         $user->name = $request->input('name');
         $user->address = $request->input('address');
-        $user->city = $request->input('city');
+        $user->city = $request->city;
         if(empty($request->input('password'))){
             $user->password = $user->password;
         } else {
@@ -93,13 +93,17 @@ class RegisteredUserController extends Controller
 
         $user->save();
 
-        return redirect('/');
+        return redirect('/')->with('status', 'Votre compte a été mis à jour.');
     }
 
     public function destroy($id)
     {
+        $user = User::find($id);
+        if($user->food_id != null){
+            Meal::destroy(['id', '=', $user->food_id]);
+        }
         User::destroy($id);
-        return redirect('/');
+        return redirect('/')->with('status', 'Votre compte a été supprimé.');
     }
 
 }
