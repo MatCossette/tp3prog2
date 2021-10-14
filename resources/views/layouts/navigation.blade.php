@@ -1,7 +1,7 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
-    @if (Route::has('login'))  
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    @if (Route::has('login'))
+    <div class="mx-5 px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
@@ -20,7 +20,7 @@
                     <x-nav-link :href="route('profile', ['id' => Auth::user()->id])" :active="request()->routeIs('profile', ['id' => Auth::user()->id])">
                         {{ __('Mon profil') }}
                     </x-nav-link>
-                    @endauth  
+                    @endauth
                 </div>
             </div>
 
@@ -45,8 +45,7 @@
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
+                            <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
@@ -54,9 +53,9 @@
                     </x-slot>
                 </x-dropdown>
                 @endauth
-                @guest  
-                    <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-                    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                @guest
+                <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
                 @endguest
             </div>
 
@@ -89,14 +88,13 @@
                 <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
             </div>
-            
+
             <div class="mt-3 space-y-1">
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    
-                    <x-responsive-nav-link :href="route('logout')"
-                    onclick="event.preventDefault();
+
+                    <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault();
                                         this.closest('form').submit();">
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
@@ -104,8 +102,8 @@
             </div>
             @endauth
             @guest
-                <x-responsive-nav-link :href="route('login')">Log in</x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('register')">Register</x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('login')">Log in</x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('register')">Register</x-responsive-nav-link>
             @endguest
         </div>
     </div>

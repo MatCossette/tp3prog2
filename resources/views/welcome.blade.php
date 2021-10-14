@@ -19,12 +19,14 @@
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100">
+    <div class="min-h-screen bg-white">
         @include('layouts.navigation')
 
         <!-- Page Content -->
-        <main>
+        <main class="mt-5 p-5">
+            <h1 class="font-bold text-3xl mb-5">Repas disponibles</h1>
             <div class="relative flex items-top justify-center sm:items-center py-4 sm:pt-0 ">
+
                 <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
                     @foreach ($meals as $meal)
                     <div class="bg-white w-128 h-60 rounded shadow-md flex card text-grey-darkest">
@@ -46,14 +48,14 @@
                                     <div class="text-xs flex items-center mb-2 text-gray-400">
                                         le {{ $meal-> created_at }}
                                     </div>
-                                        @if (Route::has('login'))
-                                        <div class="sm:block">
-                                            @auth
-                                            <p class="text-xs">{{ $userOffering->address }}, {{ $userOffering->city }}</p>
-                                            @else
-                                            @endauth
-                                        </div>
-                                        @endif
+                                    @if (Route::has('login'))
+                                    <div class="sm:block">
+                                        @auth
+                                        <p class="text-xs">{{ $userOffering->address }}, {{ $userOffering->city }}</p>
+                                        @else
+                                        @endauth
+                                    </div>
+                                    @endif
                                     @endif
                                     @endforeach
                                 </div>
@@ -68,15 +70,15 @@
                                         @auth
                                         <form action="{{ route('reserveMeal', ['foodCard' => $meal-> id, 'id' => Auth::user()->id]) }}" method="POST">
                                             @csrf
-                                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">Réserver</button>
+                                            <button type="submit" class="bg-yellow-400 hover:bg-yellow-300 text-white py-2 px-4 rounded">Réserver</button>
                                         </form>
                                         @else
-                                        <a href="{{ url('/login') }}" class="bg-gray-500 hover:bg-gray-700 text-white py-2 px-4 rounded">Réserver</a>
+                                        <a href="{{ url('/login') }}" class="bg-gray-300 hover:bg-gray-400 text-white py-2 px-4 rounded">Réserver</a>
                                         @endauth
                                     </div>
                                     @endif
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
